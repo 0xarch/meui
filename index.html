@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main/import.css">
+    <title>MEUI Index</title>
+</head>
+
+<body shrink="false">
+    <Drawer>
+        <GoBack>
+            <button id="drawer-close" class="icon-button">
+                <span class="google-symbols">menu_open</span>
+            </button>
+        </GoBack>
+        <Section>
+            <a class="drawer-item" href="/">
+                <span class="google-symbols icon-symbol">home</span>
+                <span>首页</span>
+            </a>
+            <a class="drawer-item" href="/">
+                <span class="google-symbols icon-symbol">apps</span>
+                <span>入门</span>
+            </a>
+            <ul id="component-button" class="drawer-item">
+                <span class="google-symbols icon-symbol">add_circle</span>
+                <span>组件</span>
+                <ChildMenu>
+                    <button class="drawer-item child-close">
+                        <span class="google-symbols icon-symbol">menu_open</span>
+                        <span>返回</span>
+                    </button>
+                    <a class="drawer-item" href="/">
+                        <span class="google-symbols icon-symbol">home</span>
+                        <span>测试</span>
+                    </a>
+                </ChildMenu>
+            </ul>
+        </Section>
+        <div class="flex-center-all">
+            <button id="switch-dark" class="switch-button">
+            </button>
+        </div>
+    </Drawer>
+    <Toolbar>
+        <button id="drawer-open" class="icon-button">
+            <span class="google-symbols">menu</span>
+        </button>
+    </Toolbar>
+    <Paper>
+        3
+    </Paper>
+    <script type="module" src="./index.js"></script>
+</body>
+
+</html>

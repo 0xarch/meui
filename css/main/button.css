@@ -1,0 +1,35 @@
+.icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 100px;
+    cursor: pointer;
+    font-variation-settings: "wght" 400, "opsz" 24;
+    transition: font-variation-settings .2s cubic-bezier(.2, 0, 0, 1);
+    user-select: none;
+    border: none;
+    background: transparent;
+}
+
+.icon-button:hover{
+    background: var(--me-color-onsurface-v-2);
+}
+
+.switch-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    min-height: 48px;
+    padding: 8px;
+    border-radius: 120px;
+    color: var(--me-color-surface-outline);
+    border: 1px solid var(--me-color-surface-outline);
+    background-color: transparent;
+}
+
+.switch-button:hover{
+    background: var(--me-color-onsurface-v-2);
+}

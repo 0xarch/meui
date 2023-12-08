@@ -1,0 +1,24 @@
+:root{
+    --round-radius:32px;
+    --round-radius-content:24px;
+    --drawer-width:320px;
+    --font-size:16px;
+}
+
+body{
+    --basis-color: rgb(11,87,208);
+    --me-color-secondary-container: #c2e7ff;
+    --basis-color-neutral: #e3e3e3;
+    --me-theme-elevation-1: 0px 1px 2px 0px rgb(0 0 0 / 30%), 0px 1px 3px 1px rgb(0 0 0 / 15%);
+    --me-theme-elevation-2: 0px 1px 2px 0px rgb(0 0 0 / 30%), 0px 2px 6px 2px rgb(0 0 0 / 15%);
+    --me-theme-elevation-3: 0px 1px 3px 0px rgb(0 0 0 / 30%), 0px 4px 8px 3px rgb(0 0 0 / 15%)
+}
+
+body.light{
+    color: rgb(31,31,31);
+    --me-color-surface-0: #fff;
+    --me-color-surface: #f3f6fc;
+    --me-color-onsurface-v-2: linear-gradient(0deg, rgba(68, 71, 70, .08), rgba(68, 71, 70, .08));
+    --me-color-surface-text: rgb(31,31,31);
+    --me-color-surface-outline: #747775;
+}
