@@ -19,3 +19,7 @@
     word-wrap: normal;
     white-space: nowrap;
 }
+
+icon{
+    user-select: none;
+}

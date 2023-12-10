@@ -1,5 +1,6 @@
 import Drawer from './components/drawer.js';
 import darkModeSettings from './browse/darkmodesettings.js';
+import windowSettings from './browse/windowsettings.js';
 
 export const MEUI = {
     name: "MEUI",
@@ -8,7 +9,8 @@ export const MEUI = {
         drawer: Drawer
     },
     browse: {
-        darkModeSettings: darkModeSettings
+        darkModeSettings: darkModeSettings,
+        windowSettings: windowSettings,
     }
 }
 

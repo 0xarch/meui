@@ -99,7 +99,7 @@ function create(drawer_with_json,open_button){
             var closetext = document.createElement('span');
             icon.textContent = item.icon;
             text.textContent = item.text;
-            closeicon.textContent = 'menu_open';
+            closeicon.textContent = 'arrow_back';
             closetext.textContent = '返回';
             elem.classList.add('drawer-item');
             childclose.classList.add('drawer-item','child-close');
@@ -107,17 +107,38 @@ function create(drawer_with_json,open_button){
             childclose.appendChild(closetext);
             childmenu.appendChild(childclose);
             for(let child of item.child){
-                let elem = document.createElement('a');
+                let elem;
+                // let elem = document.createElement('a');
                 let icon = document.createElement('icon');
                 let text = document.createElement('span');
                 icon.textContent = child.icon;
                 text.textContent = child.text;
-                elem.classList.add('drawer-item');
-                elem.appendChild(icon);
-                elem.appendChild(text);
-                if(child.type == 'link'){
+                if(child.type == 'menu'){
+                    elem = document.createElement('ul');
+                    elem.classList.add('has-sub-drop');
+                    let sub_childmenu = document.createElement('child-drop');
+                    for(let sub_child of child.child){
+                        let sub_elem = document.createElement('a');
+                        let icon = document.createElement('icon');
+                        let text = document.createElement('span');
+                        icon.textContent = sub_child.icon;
+                        text.textContent = sub_child.text;
+                        if(sub_child.href) sub_elem.href = sub_child.href;
+                        sub_elem.classList.add('drawer-item');
+                        sub_elem.appendChild(icon);
+                        sub_elem.appendChild(text);
+                        sub_childmenu.appendChild(sub_elem);
+                    }
+                    elem.appendChild(text);
+                    elem.appendChild(sub_childmenu);
+                    elem.style.setProperty('--sHeight','calc(var(--s64px) + '+child.child.length+'*var(--s80px))');
+                }else{
+                    elem = document.createElement('a');
                     elem.href = child.href;
+                    elem.appendChild(icon);
+                    elem.appendChild(text);
                 }
+                elem.classList.add('drawer-item');
                 childmenu.appendChild(elem);
             }
             elem.appendChild(icon);
@@ -129,7 +150,7 @@ function create(drawer_with_json,open_button){
             var icon = document.createElement('icon');
             var text = document.createElement('span');
             elem.classList.add('drawer-item');
-            elem.href = item.href;
+            if(item.href) elem.href = item.href;
             icon.textContent = item.icon;
             text.textContent = item.text;
             elem.appendChild(icon);

@@ -94,10 +94,9 @@ body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-GoBack, GoBack) {
 
 :is(.ME-Drawer, Drawer, .ME-ChildMenu, ChildMenu) .drawer-item {
     display: flex;
-    height: 64px;
-    width: calc(var(--drawer-width) - 16px);
+    height: var(--s64px);
+    width: calc(var(--drawer-width) - var(--s16px));
     align-items: center;
-    left: 0px;
     margin: 8px;
     border-radius: 100px;
     text-decoration: none;
@@ -107,18 +106,18 @@ body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-GoBack, GoBack) {
     cursor: pointer;
 }
 
-:is(.ME-Drawer, Drawer, .ME-ChildMenu, ChildMenu) .drawer-item>:is(.icon-symbol, .ME-Icon, Icon) {
+:is(.ME-Drawer, Drawer, .ME-ChildMenu, ChildMenu) .drawer-item>icon {
     display: flex;
     height: 48px;
     width: 48px;
     align-items: center;
     justify-content: center;
-    margin: 8px;
+    padding: 8px;
     border-radius: 100px;
 }
 
 body:not([shrink="false"])>:is(.ME-Drawer, Drawer, .ME-ChildMenu, ChildMenu) .drawer-item:hover,
-:is(.ME-Drawer, Drawer) :is(.ME-ChildMenu, ChildMenu) .drawer-item:hover {
+:is(.ME-Drawer, Drawer) :is(.ME-ChildMenu, ChildMenu) .drawer-item:not(.has-sub-drop):hover {
     background-color: var(--me-color-secondary-container);
 }
 
@@ -147,12 +146,12 @@ body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section)>.drawer-i
     width: var(--s64px);
 }
 
-body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section)>.drawer-item[open-menu="true"]>:is(.icon-symbol, .ME-Icon, Icon),
-body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section)>.drawer-item:hover>:is(.icon-symbol, .ME-Icon, Icon) {
+body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section)>.drawer-item[open-menu="true"]>icon,
+body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section)>.drawer-item:hover>icon {
     background-color: var(--me-color-secondary-container);
 }
 
-body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section)>.drawer-item>:is(.icon-symbol, .ME-Icon, Icon) {
+body[shrink="false"]>:is(.ME-Drawer, Drawer)>icon {
     margin: 0px;
 }
 
@@ -174,6 +173,45 @@ body[shrink="false"]>:is(.ME-Drawer, Drawer)[child-open="true"]>:is(.ME-Section,
 
 body[shrink="false"]>:is(.ME-Drawer, Drawer)[child-open="true"] {
     width: calc(var(--drawer-width) + var(--s64px));
+}
+
+.drawer-item.has-sub-drop{
+    position: relative;
+    height: var(--s64px);
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 0px;
+    transition: height .3s ease-in-out;
+}
+
+.drawer-item.has-sub-drop::before{
+    content: 'arrow_drop_down';
+    font-family: 'Google Symbols';
+    position: absolute;
+    left: calc(2.5 * var(--s8px));
+    top: calc(2.5 * var(--s8px));
+    font-size: 32px;
+    transition: transform .3s ease-in-out;
+}
+
+.drawer-item.has-sub-drop:hover::before{
+    transform: rotate(180deg);
+}
+
+.drawer-item.has-sub-drop:hover{
+    height: var(--sHeight);
+}
+
+.drawer-item.has-sub-drop>span{
+    display: flex;
+    min-height: var(--s64px);
+    width: var(--drawer-width);
+    padding-left: calc(var(--s80px) + var(--s64px) - var(--s8px));
+    align-items: center;
+}
+
+.drawer-item.has-sub-drop>child-drop>.drawer-item{
+    position: relative;
 }
 
 
