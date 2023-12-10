@@ -50,8 +50,8 @@ body {
     width: var(--drawer-width);
     flex-direction: column;
     align-items: center;
-    transition: left .3s ease-in-out;
-    border-radius: 0px 16px 16px 0px;
+    transition: left .3s ease-in-out, width .3s ease-in-out, border-radius .2s ease-in-out;
+    border-radius: 0px var(--s16px) var(--s16px) 0px;
     background-color: var(--me-color-surface);
     box-shadow: var(--me-theme-elevation-1);
     overflow: hidden;
@@ -64,8 +64,16 @@ body {
 :is(.ME-Drawer, Drawer)>:is(.ME-Section, Section) {
     flex: 1;
     width: 100%;
-    overflow-y: auto;
+    left: 0px;
+    overflow-y: visible;
     overflow-x: hidden;
+    position: relative;
+    transition: left .3s ease-in-out;
+}
+
+body:not([shrink="false"])>:is(.ME-Drawer, Drawer)[child-open="true"]>:is(.ME-Section, Section) {
+    left: calc(-100%);
+    overflow-x: visible;
 }
 
 :is(.ME-Drawer, Drawer)>* {
@@ -74,14 +82,17 @@ body {
     padding-bottom: 24px;
 }
 
-:is(.ME-Drawer, Drawer)>:is(.ME-GoBack, GoBack) {
-    padding-left: 8px;
-    padding-bottom: 12px;
+body:not([shrink="false"])>:is(.ME-Drawer, Drawer)>:is(.ME-GoBack, GoBack) {
+    padding-left: var(--s16px);
+    padding-bottom: 0px;
     width: 100%;
 }
 
-:is(.ME-Drawer, Drawer,.ME-ChildMenu,ChildMenu) .drawer-item{
-    position: relative;
+body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-GoBack, GoBack) {
+    display: none;
+}
+
+:is(.ME-Drawer, Drawer, .ME-ChildMenu, ChildMenu) .drawer-item {
     display: flex;
     height: 64px;
     width: calc(var(--drawer-width) - 16px);
@@ -92,12 +103,11 @@ body {
     text-decoration: none;
     color: var(--me-color-surface-text);
     border: none;
-    font-size:var(--font-size);
+    font-size: var(--font-size);
     cursor: pointer;
-    transition: left .3s ease-in-out;
 }
 
-:is(.ME-Drawer, Drawer,.ME-ChildMenu,ChildMenu) .drawer-item .icon-symbol{
+:is(.ME-Drawer, Drawer, .ME-ChildMenu, ChildMenu) .drawer-item>:is(.icon-symbol, .ME-Icon, Icon) {
     display: flex;
     height: 48px;
     width: 48px;
@@ -107,22 +117,72 @@ body {
     border-radius: 100px;
 }
 
-:is(.ME-Drawer, Drawer,.ME-ChildMenu,ChildMenu) .drawer-item:hover{
+body:not([shrink="false"])>:is(.ME-Drawer, Drawer, .ME-ChildMenu, ChildMenu) .drawer-item:hover,
+:is(.ME-Drawer, Drawer) :is(.ME-ChildMenu, ChildMenu) .drawer-item:hover {
     background-color: var(--me-color-secondary-container);
 }
 
-:is(.ME-Drawer, Drawer,.ME-ChildMenu,ChildMenu) ul.drawer-item{
+:is(.ME-Drawer, Drawer, .ME-ChildMenu, ChildMenu) ul.drawer-item {
     padding-left: 0px;
 }
 
-:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section)>.drawer-item>:is(.ME-ChildMenu,ChildMenu){
+:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section)>.drawer-item>:is(.ME-ChildMenu, ChildMenu) {
     position: absolute;
     left: 100%;
-    padding-left: 8px;
+    top: 0px;
 }
 
-:is(.ME-Drawer, Drawer)[child-open="true"]>:is(.ME-Section, Section)>.drawer-item{
-    left: calc(-100%);
+body[shrink="false"]>:is(.ME-Drawer, Drawer) {
+    left: 0%;
+    width: var(--s80px);
+    border-radius: 0px;
+}
+
+body[shrink="false"]>:is(.ME-Drawer, Drawer)[child-open="true"] {
+    border-radius: 0px var(--s16px) var(--s16px) 0px;
+}
+
+body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section)>.drawer-item {
+    flex-direction: column;
+    width: var(--s64px);
+}
+
+body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section)>.drawer-item[open-menu="true"]>:is(.icon-symbol, .ME-Icon, Icon),
+body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section)>.drawer-item:hover>:is(.icon-symbol, .ME-Icon, Icon) {
+    background-color: var(--me-color-secondary-container);
+}
+
+body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section)>.drawer-item>:is(.icon-symbol, .ME-Icon, Icon) {
+    margin: 0px;
+}
+
+body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section)>.drawer-item>:is(.ME-ChildMenu, ChildMenu) {
+    left: var(--s64px);
+    display: none;
+    margin-left: 8px;
+    transition: margin-left .3s ease-in-out;
+}
+
+body[shrink="false"]>:is(.ME-Drawer, Drawer)[child-open="true"]>:is(.ME-Section, Section)>.drawer-item>:is(.ME-ChildMenu, ChildMenu) {
+    margin-left: 0px;
+    display: block;
+}
+
+body[shrink="false"]>:is(.ME-Drawer, Drawer)[child-open="true"]>:is(.ME-Section, Section) {
+    overflow-x: visible;
+}
+
+body[shrink="false"]>:is(.ME-Drawer, Drawer)[child-open="true"] {
+    width: calc(var(--drawer-width) + var(--s64px));
+}
+
+
+body[shrink="false"] .hide-on-wide {
+    display: none;
+}
+
+body:not([shrink="false"]) .hide-on-shrink {
+    display: none;
 }
 
 :is(.ME-Toolbar, Toolbar) {

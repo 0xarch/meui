@@ -3,6 +3,11 @@
     --round-radius-content:24px;
     --drawer-width:320px;
     --font-size:16px;
+    --s8px: 8px;
+    --s16px: 16px;
+    --s32px: 32px;
+    --s64px: 64px;
+    --s80px: 80px;
 }
 
 body{

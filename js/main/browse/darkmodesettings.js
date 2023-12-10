@@ -1,6 +1,7 @@
 const darkModeSettings = {
+    darkModeMatchMedia: matchMedia('(prefers-color-scheme:dark)'),
     isDarkMode: function(){
-        return matchMedia('(prefers-color-scheme:dark)').matches
+        return this.darkModeMatchMedia.matches
     },
     bodyIsDarkMode: function(){
         return document.body.classList.contains('dark');
@@ -14,7 +15,7 @@ const darkModeSettings = {
         return darkModeSettings.getMode() == mode;
     },
     setMode: function(mode='default'){
-        if(mode=='default'){
+        if(mode=='default' || mode=='auto'){
             if(darkModeSettings.isDarkMode()){
                 document.body.classList.add('dark');
                 document.body.classList.remove('light');
@@ -42,6 +43,7 @@ const darkModeSettings = {
         button.appendChild(icon);
         button.appendChild(text);
         icon.classList.add('google-symbols');
+        text.classList.add('hide-on-wide');
         function changeText(){
             if(darkModeSettings.bodyIsDarkMode()){
                 icon.textContent = 'light_mode';

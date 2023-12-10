@@ -6,7 +6,7 @@
     src:url(https://fonts.gstatic.com/s/googlesymbols/v233/Hhy3U5Ak9u-oMExPeInvcuEmPosC9zS3FYkFU68cPrjdKM1pSPywlmmzc_ohQP9XsVKU.woff2) format('woff2');
 }
 
-.google-symbols{
+:is(.google-symbols,Icon,.ME-Icon){
     font-family: 'Google Symbols';
     font-weight: normal;
     font-style: normal;
