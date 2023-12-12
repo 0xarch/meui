@@ -4,7 +4,7 @@ const windowSettings = {
         return window.innerWidth / window.innerHeight;
     },
     detectShrink: function(){
-        if(windowSettings.aspectRatio() < 2.0){
+        if(windowSettings.aspectRatio() < 1.5){
             document.body.setAttribute("shrink","true");
         }else{
             document.body.setAttribute("shrink","false");
