@@ -1,3 +1,7 @@
+*{
+    transition: all .2s ease-in-out;
+}
+
 :root{
     --round-radius:32px;
     --round-radius-content:24px;
@@ -12,29 +16,29 @@
 
 body{
     --basis-color: rgb(11,87,208);
-    
-    --basis-color-neutral: #e3e3e3;
     --me-theme-elevation-1: 0px 1px 2px 0px rgb(0 0 0 / 30%), 0px 1px 3px 1px rgb(0 0 0 / 15%);
     --me-theme-elevation-2: 0px 1px 2px 0px rgb(0 0 0 / 30%), 0px 2px 6px 2px rgb(0 0 0 / 15%);
     --me-theme-elevation-3: 0px 1px 3px 0px rgb(0 0 0 / 30%), 0px 4px 8px 3px rgb(0 0 0 / 15%)
 }
 
 body.light{
+    color: #1f1f1f;
     --me-color-secondary-container: #c2e7ff;
-    color: rgb(31,31,31);
     --me-color-surface-0: #fff;
     --me-color-surface: #f3f6fc;
     --me-color-onsurface-v-2: linear-gradient(0deg, rgba(68, 71, 70, .08), rgba(68, 71, 70, .08));
-    --me-color-surface-text: rgb(31,31,31);
+    --me-color-surface-text: #1f1f1f;
     --me-color-surface-outline: #747775;
+    --me-color-surfce-text-0: #fff;
 }
 
 body.dark{
+    color: #fff;
     --me-color-secondary-container: #004a77;
-    color: rgb(31,31,31);
     --me-color-surface-0: #1f1f1f;
     --me-color-surface: #28292a;
-    --me-color-onsurface-v-2: linear-gradient(0deg, rgba(227, 227, 227, .08), rgba(227, 227, 227, .08)), #004a77;
+    --me-color-onsurface-v-2: linear-gradient(0deg, rgba(227, 227, 227, .08), rgba(227, 227, 227, .08));
     --me-color-surface-text: #e3e3e3;
     --me-color-surface-outline: #8e918f;
+    --me-color-surfce-text-0: #1f1f1f;
 }

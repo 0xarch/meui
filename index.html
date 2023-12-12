@@ -16,13 +16,11 @@
             "darkSwitcher":"true",
             "section":[
                 {
-                    "type":"link",
                     "href":"/",
                     "icon":"home",
                     "text":"首页"
                 },
                 {
-                    "type":"link",
                     "href":"/",
                     "icon":"apps",
                     "text":"开始"
@@ -33,7 +31,6 @@
                     "text":"组件",
                     "child":[
                         {
-                            "type":"link",
                             "href":"/",
                             "icon":"",
                             "text":"导航栏"
@@ -48,7 +45,6 @@
                             ]
                         },
                         {
-                            "type":"link",
                             "href":"/",
                             "icon":"",
                             "text":"工具栏"
@@ -60,11 +56,17 @@
     </Drawer>
     <Toolbar>
         <button id="drawer-open" class="icon-button hide-on-wide">
-            <span class="google-symbols">menu</span>
+            <icon>menu</icon>
         </button>
     </Toolbar>
     <Paper>
-        3
+        <card>
+            <h1>MEUI</h1>
+            <p>A static version of Material 3.</p>
+            <a class="bg-filled text-button" href="/">
+                <h3 style="margin: 32px">GET STARTED</h3>
+            </a>
+        </card>
     </Paper>
     <script type="module" src="./index.js"></script>
 </body>

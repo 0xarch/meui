@@ -1,4 +1,5 @@
-import darkModeSettings from "../browse/darkmodesettings.js";
+import Button from './button.js';
+import darkModeSettings from '../browse/darkmodesettings.js';
 
 const shadow = document.createElement('div');
 shadow.classList.add('drawer-shadow');
@@ -79,11 +80,10 @@ function create(drawer_with_json,open_button){
     // start compile
     drawer_with_json.setAttribute('open',config.open);
     if(config.hideButton){
-        var hide_div = document.createElement('goback');
-        var hide_button = document.createElement('button');
-        hide_button.classList.add('icon-button','google-symbols');
-        hide_button.textContent = 'menu_open';
+        var hide_div = document.createElement('div');
+        var hide_button = Button.iconButton.create('menu_open');
         bindDrawerClose(hide_button,drawer_with_json);
+        hide_div.classList.add('me-div-goback');
         hide_div.appendChild(hide_button);
         drawer_with_json.appendChild(hide_div);
     }
@@ -93,7 +93,7 @@ function create(drawer_with_json,open_button){
             var elem = document.createElement('ul');
             var icon = document.createElement('icon');
             var text = document.createElement('span');
-            var childmenu = document.createElement('childmenu');
+            var childmenu = document.createElement('child-menu');
             var childclose = document.createElement('button');
             var closeicon = document.createElement('icon');
             var closetext = document.createElement('span');
@@ -108,7 +108,6 @@ function create(drawer_with_json,open_button){
             childmenu.appendChild(childclose);
             for(let child of item.child){
                 let elem;
-                // let elem = document.createElement('a');
                 let icon = document.createElement('icon');
                 let text = document.createElement('span');
                 icon.textContent = child.icon;
@@ -131,7 +130,7 @@ function create(drawer_with_json,open_button){
                     }
                     elem.appendChild(text);
                     elem.appendChild(sub_childmenu);
-                    elem.style.setProperty('--sHeight','calc(var(--s64px) + '+child.child.length+'*var(--s80px))');
+                    elem.style.setProperty('--sHeight','calc(64px + '+child.child.length+'*80px)');
                 }else{
                     elem = document.createElement('a');
                     elem.href = child.href;

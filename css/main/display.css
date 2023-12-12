@@ -2,15 +2,8 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: var(--me-color-surface-0);
-}
-
-:is(.ME-Drawer, Drawer) {
-    display: block;
-    height: 100%;
-    position: fixed;
-    top: 0px;
-    transition: background .3s ease-in-out;
-    z-index: 1000;
+    --drawer-width-shrink: 320px;
+    --drawer-width-default: 80px;
 }
 
 .drawer-shadow {
@@ -32,25 +25,23 @@ body {
     pointer-events: auto;
 }
 
-:is(.ME-Drawer, Drawer)[open="true"] {
+drawer[open="true"] {
     left: 0%;
 }
 
-:is(.ME-Drawer, Drawer)[open="false"] {
+drawer[open="false"] {
     left: -100%;
 }
 
-:is(.ME-Drawer, Drawer) {
+drawer {
     line-height: 24px;
     display: flex;
-    position: absolute;
     top: 0px;
     bottom: 0px;
     left: 0px;
-    width: var(--drawer-width);
     flex-direction: column;
     align-items: center;
-    transition: left .3s ease-in-out, width .3s ease-in-out, border-radius .2s ease-in-out;
+    transition: all .2s ease-in-out;
     border-radius: 0px var(--s16px) var(--s16px) 0px;
     background-color: var(--me-color-surface);
     box-shadow: var(--me-theme-elevation-1);
@@ -59,40 +50,48 @@ body {
     padding: 0;
     border: 0;
     z-index: 1100;
+    height: 100vh;
+    position: fixed;
 }
 
-:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section) {
+body:not([shrink="false"]) drawer{
+    width: var(--drawer-width-shrink);
+}
+
+body[shrink="false"] drawer{
+    width: var(--drawer-width-default);
+}
+
+drawer>section {
     flex: 1;
     width: 100%;
     left: 0px;
-    overflow-y: visible;
-    overflow-x: hidden;
+    overflow: visible;
     position: relative;
-    transition: left .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
-body:not([shrink="false"])>:is(.ME-Drawer, Drawer)[child-open="true"]>:is(.ME-Section, Section) {
+body:not([shrink="false"]) drawer[child-open="true"]>section {
     left: calc(-100%);
-    overflow-x: visible;
 }
 
-:is(.ME-Drawer, Drawer)>* {
+drawer>* {
     display: block;
     margin: 8px 0 auto;
     padding-bottom: 24px;
 }
 
-body:not([shrink="false"])>:is(.ME-Drawer, Drawer)>:is(.ME-GoBack, GoBack) {
+body:not([shrink="false"])>drawer>.me-div-goback {
     padding-left: var(--s16px);
     padding-bottom: 0px;
     width: 100%;
 }
 
-body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-GoBack, GoBack) {
+body[shrink="false"]>drawer>.me-div-goback {
     display: none;
 }
 
-:is(.ME-Drawer, Drawer, .ME-ChildMenu, ChildMenu) .drawer-item {
+:is(drawer, child-menu) .drawer-item {
     display: flex;
     height: var(--s64px);
     width: calc(var(--drawer-width) - var(--s16px));
@@ -106,7 +105,7 @@ body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-GoBack, GoBack) {
     cursor: pointer;
 }
 
-:is(.ME-Drawer, Drawer, .ME-ChildMenu, ChildMenu) .drawer-item>icon {
+:is(drawer, child-menu) .drawer-item>icon {
     display: flex;
     height: 48px;
     width: 48px;
@@ -116,63 +115,66 @@ body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-GoBack, GoBack) {
     border-radius: 100px;
 }
 
-body:not([shrink="false"])>:is(.ME-Drawer, Drawer, .ME-ChildMenu, ChildMenu) .drawer-item:hover,
-:is(.ME-Drawer, Drawer) :is(.ME-ChildMenu, ChildMenu) .drawer-item:not(.has-sub-drop):hover {
+body:not([shrink="false"])>:is(drawer, child-menu) .drawer-item:not(.has-sub-drop):hover,
+drawer child-menu .drawer-item:not(.has-sub-drop):hover {
     background-color: var(--me-color-secondary-container);
 }
 
-:is(.ME-Drawer, Drawer, .ME-ChildMenu, ChildMenu) ul.drawer-item {
+:is(drawer, child-menu) ul.drawer-item {
     padding-left: 0px;
 }
 
-:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section)>.drawer-item>:is(.ME-ChildMenu, ChildMenu) {
+drawer>section>.drawer-item>child-menu {
     position: absolute;
     left: 100%;
     top: 0px;
 }
 
-body[shrink="false"]>:is(.ME-Drawer, Drawer) {
+body[shrink="false"]>drawer {
     left: 0%;
     width: var(--s80px);
     border-radius: 0px;
 }
 
-body[shrink="false"]>:is(.ME-Drawer, Drawer)[child-open="true"] {
-    border-radius: 0px var(--s16px) var(--s16px) 0px;
+body[shrink="false"]>drawer[child-open="true"] {
+    border-radius: 0px 16px 16px 0px;
 }
 
-body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section)>.drawer-item {
+body[shrink="false"]>:is(.ME-Drawer, Drawer)>section>.drawer-item {
     flex-direction: column;
-    width: var(--s64px);
+    width: 64px;
 }
 
-body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section)>.drawer-item[open-menu="true"]>icon,
+body[shrink="false"]>drawer>section>.drawer-item[open-menu="true"]>icon,
 body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section)>.drawer-item:hover>icon {
     background-color: var(--me-color-secondary-container);
 }
 
-body[shrink="false"]>:is(.ME-Drawer, Drawer)>icon {
+body[shrink="false"]>drawer>icon {
     margin: 0px;
 }
 
-body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section)>.drawer-item>:is(.ME-ChildMenu, ChildMenu) {
-    left: var(--s64px);
-    display: none;
-    margin-left: 8px;
-    transition: margin-left .3s ease-in-out;
+child-menu{
+    transition: all .1s ease-in-out;
+    opacity: 0;
 }
 
-body[shrink="false"]>:is(.ME-Drawer, Drawer)[child-open="true"]>:is(.ME-Section, Section)>.drawer-item>:is(.ME-ChildMenu, ChildMenu) {
-    margin-left: 0px;
+drawer[child-open="true"]>section>.drawer-item>child-menu{
+    opacity: 1;
+}
+
+body[shrink="false"]>drawer>section>.drawer-item>child-menu {
+    left: 64px;
+    margin-left: 8px;
     display: block;
 }
 
-body[shrink="false"]>:is(.ME-Drawer, Drawer)[child-open="true"]>:is(.ME-Section, Section) {
-    overflow-x: visible;
+body[shrink="false"]>drawer[child-open="true"]>section>.drawer-item>child-menu {
+    margin-left: 0px;
 }
 
-body[shrink="false"]>:is(.ME-Drawer, Drawer)[child-open="true"] {
-    width: calc(var(--drawer-width) + var(--s64px));
+body[shrink="false"]>drawer[child-open="true"] {
+    width: calc(var(--drawer-width-shrink) + 64px);
 }
 
 .drawer-item.has-sub-drop{
@@ -188,8 +190,8 @@ body[shrink="false"]>:is(.ME-Drawer, Drawer)[child-open="true"] {
     content: 'arrow_drop_down';
     font-family: 'Google Symbols';
     position: absolute;
-    left: calc(2.5 * var(--s8px));
-    top: calc(2.5 * var(--s8px));
+    left: 20px;
+    top: 20px;
     font-size: 32px;
     transition: transform .3s ease-in-out;
 }
@@ -204,9 +206,9 @@ body[shrink="false"]>:is(.ME-Drawer, Drawer)[child-open="true"] {
 
 .drawer-item.has-sub-drop>span{
     display: flex;
-    min-height: var(--s64px);
+    min-height: 64px;
     width: var(--drawer-width);
-    padding-left: calc(var(--s80px) + var(--s64px) - var(--s8px));
+    padding-left: 136px;
     align-items: center;
 }
 
@@ -223,11 +225,44 @@ body:not([shrink="false"]) .hide-on-shrink {
     display: none;
 }
 
-:is(.ME-Toolbar, Toolbar) {
+toolbar {
     height: 64px;
     display: flex;
-    position: relative;
+    position: fixed;
     box-sizing: border-box;
-    width: 100%;
-    padding: 8px;
+    padding: 16px 8px;
+    top: 0px;
+    right:0px;
+}
+
+body:not([shrink="false"]) toolbar{
+    width: 100vw;
+}
+
+body[shrink="false"] :is(toolbar,paper){
+    width: calc(100vw - var(--drawer-width-default));
+    margin-left: var(--drawer-width-default);
+}
+
+paper{
+    display: block;
+    min-height: calc(100vh - 112px);
+    position: relative;
+    right: 0px;
+    top: 80px;
+    padding: 16px;
+}
+
+body:not([shrink="false"]) toolbar{
+    width: 100vw;
+}
+
+body[shrink="false"] paper{
+    width: calc(100vw - var(--drawer-width-default) - 32px);
+    margin-left: var(--drawer-width-default);
+}
+
+body[no-toolbar="true"] paper{
+    top: 16px;
+    min-height: 100vh;
 }
