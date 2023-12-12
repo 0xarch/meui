@@ -1,4 +1,4 @@
-import Button from './button.js';
+import Button from '../widgets/button.js';
 import darkModeSettings from '../browse/darkmodesettings.js';
 
 const shadow = document.createElement('div');
