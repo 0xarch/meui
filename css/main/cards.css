@@ -17,3 +17,7 @@ card{
     align-items: center;
     padding: 32px;
 }
+
+card[no-padding]{
+    padding: 0px;
+}

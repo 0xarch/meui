@@ -17,7 +17,7 @@ body {
     opacity: 0;
     transition: opacity .2s ease-in-out;
     pointer-events: none;
-    z-index: 900;
+    z-index: 1000;
 }
 
 .drawer-shadow.shown {
@@ -233,6 +233,7 @@ toolbar {
     padding: 16px 8px;
     top: 0px;
     right:0px;
+    z-index: 900;
 }
 
 body:not([shrink="false"]) toolbar{
