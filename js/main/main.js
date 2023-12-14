@@ -22,4 +22,4 @@ export const MEUI = {
     }
 }
 
-export default MEUI;
+if(window) window.MEUI = MEUI;

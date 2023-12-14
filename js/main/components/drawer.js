@@ -7,7 +7,7 @@ shadow.classList.add('drawer-shadow');
  * 
  * @param { HTMLElement } drawer 
  */
-function initDrawer(drawer) {
+async function initDrawer(drawer) {
     shadow.onclick = function (e) {
         if (e.target == shadow)
             if (drawer.getAttribute("open") == "true") {
@@ -22,14 +22,14 @@ function initDrawer(drawer) {
     document.body.appendChild(shadow);
 }
 
-function bindDrawerOpen(button,drawer){
+async function bindDrawerOpen(button,drawer){
     button.onclick = function(){
         drawer.setAttribute("open",true);
         shadow.classList.add('shown');
     }
 }
 
-function bindDrawerClose(button,drawer){
+async function bindDrawerClose(button,drawer){
     button.onclick = function(){
         drawer.setAttribute("open",false);
         shadow.classList.remove('shown');
@@ -40,7 +40,7 @@ function bindDrawerClose(button,drawer){
  * 
  * @param {HTMLElement} drawer 
  */
-function resolveChildMenu(drawer){
+async function resolveChildMenu(drawer){
     function openChildMenu(child){
         drawer.setAttribute("child-open","true");
         child.setAttribute("open-menu","true");
@@ -71,7 +71,7 @@ function resolveChildMenu(drawer){
  * @param { HTMLElement } drawer_with_json
  * @param { HTMLElement | undefined } open_button
  */
-function create(drawer_with_json,open_button){
+async function create(drawer_with_json,open_button){
     const config = JSON.parse(drawer_with_json.innerHTML);
     drawer_with_json.innerHTML = '';
     if(open_button){

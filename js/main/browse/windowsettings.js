@@ -1,14 +1,23 @@
+import debounce from "../util/debounce.js";
+
+function getAspectRatio(){
+    return window.innerWidth / window.innerHeight;
+}
+
+function detectShrink(){
+    if(getAspectRatio() < 1.5){
+        document.body.setAttribute("shrink","true");
+    }else{
+        document.body.setAttribute("shrink","false");
+    }
+}
+
 const windowSettings = {
     userAgent: navigator.userAgent,
-    aspectRatio: function(){
-        return window.innerWidth / window.innerHeight;
-    },
-    detectShrink: function(){
-        if(windowSettings.aspectRatio() < 1.5){
-            document.body.setAttribute("shrink","true");
-        }else{
-            document.body.setAttribute("shrink","false");
-        }
+    aspectRatio: getAspectRatio,
+    detectShrink: detectShrink,
+    debounced: {
+        detectShrink: debounce(detectShrink,800)
     }
 }
 
