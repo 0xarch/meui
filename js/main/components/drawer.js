@@ -94,20 +94,13 @@ async function create(drawer_with_json,open_button){
             var icon = document.createElement('icon');
             var text = document.createElement('span');
             var childmenu = document.createElement('child-menu');
-            var childclose = document.createElement('button');
-            var closeicon = document.createElement('icon');
-            var closetext = document.createElement('span');
+            var childclose = Button.button.create('arrow_back','返回',void 0,['drawer-item','child-close','mId0-ci']);
             icon.textContent = item.icon;
             text.textContent = item.text;
-            closeicon.textContent = 'arrow_back';
-            closetext.textContent = '返回';
-            elem.classList.add('drawer-item');
-            childclose.classList.add('drawer-item','child-close');
-            childclose.appendChild(closeicon);
-            childclose.appendChild(closetext);
+            elem.classList.add('drawer-item','mId0-c');
             childmenu.appendChild(childclose);
             for(let child of item.child){
-                let elem;
+                let elem = void 0;
                 let icon = document.createElement('icon');
                 let text = document.createElement('span');
                 icon.textContent = child.icon;
@@ -117,15 +110,7 @@ async function create(drawer_with_json,open_button){
                     elem.classList.add('has-sub-drop');
                     let sub_childmenu = document.createElement('child-drop');
                     for(let sub_child of child.child){
-                        let sub_elem = document.createElement('a');
-                        let icon = document.createElement('icon');
-                        let text = document.createElement('span');
-                        icon.textContent = sub_child.icon;
-                        text.textContent = sub_child.text;
-                        if(sub_child.href) sub_elem.href = sub_child.href;
-                        sub_elem.classList.add('drawer-item');
-                        sub_elem.appendChild(icon);
-                        sub_elem.appendChild(text);
+                        var sub_elem = Button.button.create(sub_child.icon,sub_child.text,sub_child.href,'drawer-item');
                         sub_childmenu.appendChild(sub_elem);
                     }
                     elem.appendChild(text);
@@ -145,15 +130,9 @@ async function create(drawer_with_json,open_button){
             elem.appendChild(childmenu);
             section.appendChild(elem);
         }else{
-            var elem = document.createElement('a');
-            var icon = document.createElement('icon');
-            var text = document.createElement('span');
-            elem.classList.add('drawer-item');
-            if(item.href) elem.href = item.href;
-            icon.textContent = item.icon;
-            text.textContent = item.text;
-            elem.appendChild(icon);
-            elem.appendChild(text);
+            var elem = Button.button.create(item.icon,item.text,item.href,['drawer-item','mId0-c']);
+            if(location.pathname == item.href) elem.classList.add('mId0-hl');
+            console.log(location.pathname,item.href);
             section.appendChild(elem);
         }
     }

@@ -81,17 +81,21 @@ drawer>* {
     padding-bottom: 24px;
 }
 
-body:not([shrink="false"])>drawer>.me-div-goback {
-    padding-left: var(--s16px);
+body:not([shrink="false"])>drawer>.me-div-goback,
+body:not([shrink="false"]) .mId0-gb {
+    padding-left: 16px;
+    padding-top: 8px;
     padding-bottom: 0px;
     width: 100%;
 }
 
-body[shrink="false"]>drawer>.me-div-goback {
+body[shrink="false"]>drawer>.me-div-goback,
+body[shrink="false"] .mId0-gb {
     display: none;
 }
 
-:is(drawer, child-menu) .drawer-item {
+:is(drawer, child-menu) .drawer-item,
+.mId0-c {
     display: flex;
     height: var(--s64px);
     width: calc(var(--drawer-width) - var(--s16px));
@@ -105,18 +109,30 @@ body[shrink="false"]>drawer>.me-div-goback {
     cursor: pointer;
 }
 
-:is(drawer, child-menu) .drawer-item>icon {
+child-drop>.drawer-item>icon,
+.mId0-c>icon {
+    padding: 4px;
+}
+
+:is(drawer>section, child-menu, child-drop)>.drawer-item>icon,
+.mId0-c>icon,
+.mId0-ci>icon {
     display: flex;
     height: 48px;
     width: 48px;
     align-items: center;
     justify-content: center;
-    padding: 8px;
     border-radius: 100px;
 }
 
+:is(drawer>section, child-menu)>.drawer-item>icon,
+.mId0-c>icon{
+    padding: 8px;
+}
+
 body:not([shrink="false"])>:is(drawer, child-menu) .drawer-item:not(.has-sub-drop):hover,
-drawer child-menu .drawer-item:not(.has-sub-drop):hover {
+drawer child-menu .drawer-item:not(.has-sub-drop):hover,
+.mId0-hl {
     background-color: var(--me-color-secondary-container);
 }
 
@@ -132,7 +148,7 @@ drawer>section>.drawer-item>child-menu {
 
 body[shrink="false"]>drawer {
     left: 0%;
-    width: var(--s80px);
+    width: 80px;
     border-radius: 0px;
 }
 
@@ -179,7 +195,7 @@ body[shrink="false"]>drawer[child-open="true"] {
 
 .drawer-item.has-sub-drop{
     position: relative;
-    height: var(--s64px);
+    height: 64px;
     flex-direction: column;
     overflow: hidden;
     border-radius: 0px;
@@ -208,7 +224,7 @@ body[shrink="false"]>drawer[child-open="true"] {
     display: flex;
     min-height: 64px;
     width: var(--drawer-width);
-    padding-left: 136px;
+    padding-left: 140px;
     align-items: center;
 }
 
@@ -226,7 +242,7 @@ body:not([shrink="false"]) .hide-on-shrink {
 }
 
 toolbar {
-    height: 64px;
+    height: 80px;
     display: flex;
     position: fixed;
     box-sizing: border-box;
@@ -234,10 +250,6 @@ toolbar {
     top: 0px;
     right:0px;
     z-index: 900;
-}
-
-body:not([shrink="false"]) toolbar{
-    width: 100vw;
 }
 
 body[shrink="false"] :is(toolbar,paper){
@@ -255,7 +267,7 @@ paper{
 }
 
 body:not([shrink="false"]) toolbar{
-    width: 100vw;
+    width: calc(100vw - 16px);
 }
 
 body[shrink="false"] paper{

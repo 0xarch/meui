@@ -17,7 +17,7 @@
             "darkSwitcher":"true",
             "section":[
                 {
-                    "href":"/",
+                    "href":"/index.html",
                     "icon":"home",
                     "text":"首页"
                 },
@@ -55,7 +55,7 @@
             ]
         }
     </Drawer>
-    <Toolbar>
+    <Toolbar style="backdrop-filter: blur(4px); border-bottom:1px solid var(--me-color-surface-0);">
         <button id="drawer-open" class="icon-button hide-on-wide">
             <icon>menu</icon>
         </button>
@@ -68,6 +68,28 @@
                 <h3 style="margin: 32px">了解 MEUI ...</h3>
             </a>
         </card>
+        <layout grid col="2 50%" s-col="1">
+            <card>
+                <h1>Google Symbols</h1>
+                <p>在输入框中输入，按回车预览.</p>
+                <input type="text" onchange="document.getElementById('d-google-symbol').innerHTML = this.value">
+                <p id="d-google-symbol" class="google-symbols"></p>
+            </card>
+            <card>
+                <h1>ME.JS <icon>javascript</icon></h1>
+                <p>使用 MEUI 提供的一系列静态开发套件.</p>
+                <a class="bg-filled text-button" href="/">
+                    <h3 style="margin: 16px;">现在开始 ...</h3>
+                </a>
+            </card>
+            <card>
+                <h1><icon>material_design</icon> Material 3</h1>
+                <p>Material 3 is the latest version of Google’s open-source design system. Design and build beautiful, usable products with Material 3.</p>
+                <a class="bg-filled text-button" href="https://m3.material.io">
+                    <h3 style="margin: 16px;">m3.material.io</h3>
+                </a>
+            </card>
+        </layout>
     </Paper>
     <script type="module" src="./index.js"></script>
 </body>
