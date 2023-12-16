@@ -1,3 +1,11 @@
 layout[grid]{
     display: grid;
 }
+
+body[m-device="pc"] layout[grid]{
+    grid-template-columns: repeat(var(--mGridCount),var(--mGridType));
+}
+
+body[m-device="mob"] layout[grid]{
+    grid-template-columns: repeat(var(--mGridCountM),var(--mGridTypeM));
+}

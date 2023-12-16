@@ -132,7 +132,8 @@ child-drop>.drawer-item>icon,
 
 body:not([shrink="false"])>:is(drawer, child-menu) .drawer-item:not(.has-sub-drop):hover,
 drawer child-menu .drawer-item:not(.has-sub-drop):hover,
-.mId0-hl {
+body[m-device="pc"] .mId0-hl>icon,
+body[m-device="mob"] .mId0-hl {
     background-color: var(--me-color-secondary-container);
 }
 

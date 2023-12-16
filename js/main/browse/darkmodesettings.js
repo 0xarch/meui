@@ -1,3 +1,43 @@
+const GlobalDarkModeMatchMedia = matchMedia('(prefers-color-scheme:dark)');
+const Events = [];
+
+function registerEvent(fn){
+    Events.push(fn);
+    return Events.length;
+}
+
+function removeEvent(i){
+    return Events.splice(i,i);
+}
+
+function bindDarkMode(button){
+    var icon = document.createElement('span');
+    var text = document.createElement('span');
+    button.appendChild(icon);
+    button.appendChild(text);
+    icon.classList.add('google-symbols');
+    text.classList.add('hide-on-wide');
+    function changeText(){
+        if(darkModeSettings.bodyIsDarkMode()){
+            icon.textContent = 'light_mode';
+            text.textContent = '切换至浅色模式';
+        }else{
+            icon.textContent = 'dark_mode';
+            text.textContent = '切换至暗色模式';
+        }
+    }
+    button.onclick = function(){
+        if(darkModeSettings.bodyIsDarkMode()){
+            darkModeSettings.setMode('light');
+        }else{
+            darkModeSettings.setMode('dark');
+        }
+        changeText();
+    }
+    changeText();
+    registerEvent(changeText);
+}
+
 const darkModeSettings = {
     darkModeMatchMedia: matchMedia('(prefers-color-scheme:dark)'),
     isDarkMode: function(){
@@ -37,31 +77,20 @@ const darkModeSettings = {
      * 
      * @param { HTMLElement } button 
      */
-    bindDarkMode: function(button){
-        var icon = document.createElement('span');
-        var text = document.createElement('span');
-        button.appendChild(icon);
-        button.appendChild(text);
-        icon.classList.add('google-symbols');
-        text.classList.add('hide-on-wide');
-        function changeText(){
-            if(darkModeSettings.bodyIsDarkMode()){
-                icon.textContent = 'light_mode';
-                text.textContent = '切换至浅色模式';
-            }else{
-                icon.textContent = 'dark_mode';
-                text.textContent = '切换至暗色模式';
-            }
+    bindDarkMode,
+    bindOn: function(){
+        GlobalDarkModeMatchMedia.onchange = function(){
+            darkModeSettings.setMode();
+            Events.forEach((fn)=>{
+                console.log(darkModeSettings.bodyIsDarkMode(),fn);
+                fn();
+            })
         }
-        button.onclick = function(){
-            if(darkModeSettings.bodyIsDarkMode()){
-                darkModeSettings.setMode('light');
-            }else{
-                darkModeSettings.setMode('dark');
-            }
-            changeText();
-        }
-        changeText();
+    },
+    event: {
+        Events,
+        registerEvent,
+        removeEvent
     }
 }
 

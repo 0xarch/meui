@@ -7,8 +7,10 @@ function getAspectRatio(){
 function detectShrink(){
     if(getAspectRatio() < 1.5){
         document.body.setAttribute("shrink","true");
+        document.body.setAttribute('m-device','mob');
     }else{
         document.body.setAttribute("shrink","false");
+        document.body.setAttribute('m-device','pc');
     }
 }
 

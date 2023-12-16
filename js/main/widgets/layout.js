@@ -3,9 +3,16 @@ function resolveGrid(){
         if(i.getAttribute('col')){
             let col = i.getAttribute('col').split(" ");
             col[1]?void 0: (col.push('auto'));
-            i.style.setProperty('grid-template-columns',`repeat(${col[0]},${col[1]})`);
+            i.style.setProperty('--mGridCount',col[0]);
+            i.style.setProperty('--mGridType',col[1]);
         }
-        if(i.getAttribute('row')){
+        if(i.getAttribute('colM')){
+            let col = i.getAttribute('colM').split(" ");
+            col[1]?void 0: (col.push('auto'));
+            i.style.setProperty('--mGridCountM',col[0]);
+            i.style.setProperty('--mGridTypeM',col[1]);
+        }
+        if(i.getAttribute('m-row')){
             i.style.setProperty('grid-template-rows',`${i.getAttribute('row')}`);
         }
     })
