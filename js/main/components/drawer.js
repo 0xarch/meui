@@ -132,7 +132,6 @@ async function create(drawer_with_json,open_button){
         }else{
             var elem = Button.button.create(item.icon,item.text,item.href,['drawer-item','mId0-c']);
             if(location.pathname == item.href) elem.classList.add('mId0-hl');
-            console.log(location.pathname,item.href);
             section.appendChild(elem);
         }
     }
@@ -141,7 +140,7 @@ async function create(drawer_with_json,open_button){
         var dark_div = document.createElement('div');
         var dark_button = document.createElement('button');
         dark_button.classList.add('switch-button');
-        dark_div.classList.add('flex-center-all');
+        dark_div.classList.add('darkSwitcher');
         darkModeSettings.bindDarkMode(dark_button);
         dark_div.appendChild(dark_button);
         drawer_with_json.appendChild(dark_div);
