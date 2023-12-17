@@ -1,0 +1,12 @@
+.mShadow{
+    box-shadow: var(--me-theme-elevation-1);
+}
+
+.mBgFillBasis{
+    background-color: var(--basisColor);
+    color: white;
+}
+
+.mBgFillBasis:hover{
+    background-color: var(--basisColorLighter);
+}

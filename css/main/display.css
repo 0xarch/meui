@@ -81,6 +81,14 @@ drawer>* {
     padding-bottom: 24px;
 }
 
+body[m-layout='wide'] drawer .darkSwitcher span{
+    white-space: nowrap;
+}
+
+body[m-layout='wide'] drawer:not([child-open='true']) .darkSwitcher span{
+    display: none;
+}
+
 body:not([shrink="false"])>drawer>.me-div-goback,
 body:not([shrink="false"]) .mId0-gb {
     padding-left: 16px;
@@ -130,11 +138,14 @@ child-drop>.drawer-item>icon,
     padding: 8px;
 }
 
-body:not([shrink="false"])>:is(drawer, child-menu) .drawer-item:not(.has-sub-drop):hover,
+body[m-layout='wide'] .mId0-c[open-menu='true']>icon,
+body[m-layout='wide'] .mId0-c:hover>icon,
+body[m-layout='wide'] child-menu .drawer-item:not(.has-sub-drop):hover,
+body[m-layout='narrow']>drawer .mId0-c:hover,
 drawer child-menu .drawer-item:not(.has-sub-drop):hover,
-body[m-device="pc"] .mId0-hl>icon,
-body[m-device="mob"] .mId0-hl {
-    background-color: var(--me-color-secondary-container);
+body[m-layout='wide'] .mId0-hl>icon,
+body[m-layout='narrow'] .mId0-hl {
+    background-color: var(--me-colorSurfaceBgPrimary);
 }
 
 :is(drawer, child-menu) ul.drawer-item {
@@ -162,11 +173,6 @@ body[shrink="false"]>:is(.ME-Drawer, Drawer)>section>.drawer-item {
     width: 64px;
 }
 
-body[shrink="false"]>drawer>section>.drawer-item[open-menu="true"]>icon,
-body[shrink="false"]>:is(.ME-Drawer, Drawer)>:is(.ME-Section, Section)>.drawer-item:hover>icon {
-    background-color: var(--me-color-secondary-container);
-}
-
 body[shrink="false"]>drawer>icon {
     margin: 0px;
 }
@@ -182,16 +188,12 @@ drawer[child-open="true"]>section>.drawer-item>child-menu{
 
 body[shrink="false"]>drawer>section>.drawer-item>child-menu {
     left: 64px;
-    margin-left: 8px;
+    margin-left: 16px;
     display: block;
 }
 
-body[shrink="false"]>drawer[child-open="true"]>section>.drawer-item>child-menu {
-    margin-left: 0px;
-}
-
 body[shrink="false"]>drawer[child-open="true"] {
-    width: calc(var(--drawer-width-shrink) + 64px);
+    width: calc(var(--drawer-width-shrink) + 80px);
 }
 
 .drawer-item.has-sub-drop{

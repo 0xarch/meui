@@ -4,14 +4,9 @@
     justify-content: center;
 }
 
-.bg-filled{
-    background-color: var(--basis-color);
-    color: white;
-}
-
 card{
     border-radius: 32px;
-    background-color: var(--me-color-secondary-container);
+    background-color: var(--me-colorSurfaceBgPrimary);
     display: flex;
     flex-direction: column;
     align-items: center;
