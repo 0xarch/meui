@@ -5,12 +5,12 @@ function getAspectRatio(){
 }
 
 function detectShrink(){
-    if(getAspectRatio() < 1.5){
+    if(getAspectRatio() < 0.975){
         document.body.setAttribute("shrink","true");
-        document.body.setAttribute('m-device','mob');
+        document.body.setAttribute('m-layout','narrow');
     }else{
         document.body.setAttribute("shrink","false");
-        document.body.setAttribute('m-device','pc');
+        document.body.setAttribute('m-layout','wide');
     }
 }
 
