@@ -11,14 +11,13 @@ function removeEvent(i){
 }
 
 function bindDarkMode(button){
-    var icon = document.createElement('span');
+    var icon = document.createElement('icon');
     var text = document.createElement('span');
     button.appendChild(icon);
     button.appendChild(text);
-    icon.classList.add('google-symbols');
-    text.classList.add('hide-on-wide');
-    function changeText(){
-        if(darkModeSettings.bodyIsDarkMode()){
+    function changeText(arg){
+        let judge = arg?arg:darkModeSettings.bodyIsDarkMode();
+        if(judge){
             icon.textContent = 'light_mode';
             text.textContent = '切换至浅色模式';
         }else{
@@ -83,7 +82,7 @@ const darkModeSettings = {
             darkModeSettings.setMode();
             Events.forEach((fn)=>{
                 console.log(darkModeSettings.bodyIsDarkMode(),fn);
-                fn();
+                fn(darkModeSettings.bodyIsDarkMode());
             })
         }
     },
