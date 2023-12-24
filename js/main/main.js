@@ -4,6 +4,7 @@ import Layout from './widgets/layout.js';
 import darkModeSettings from './browse/darkmodesettings.js';
 import windowSettings from './browse/windowsettings.js';
 import debounce from './util/debounce.js';
+import render_dwt from './components/compkit/drawer_with_toolbar.js';
 
 export const MEUI = {
     name: "MEUI",
@@ -11,9 +12,16 @@ export const MEUI = {
     components: {
         drawer: Drawer,
     },
+    compkits: {
+        dwt: render_dwt,
+    },
     widgets: {
         button: Button,
         layout: Layout,
+    },
+    window: {
+        darkManager: darkModeSettings,
+        layoutManager: windowSettings,
     },
     browse: {
         darkModeSettings: darkModeSettings,

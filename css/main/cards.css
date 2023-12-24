@@ -21,3 +21,35 @@ card[noPadding]{
 card[noMargin]{
     margin: 0px;
 }
+
+card *[\@card='bigButton']{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    height: 48px;
+    padding: 8px;
+    margin: 0 8px;
+    border-radius: 100px;
+    cursor: pointer;
+    user-select: none;
+    border: none;
+    text-decoration: none;
+    background-color: var(--basisColor);
+    color: white;
+    box-shadow: var(--me-theme-elevation-1);
+    white-space: nowrap;
+}
+
+card *[\@card='bigButton']:hover{
+    background-color: var(--basisColorLighter);
+}
+
+card *[\@card='buttonGroup']{
+    display: flex;
+    width: max-content;
+}
+
+card *[\@card='buttonGroup']>*{
+    flex: .1;
+}

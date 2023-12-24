@@ -236,11 +236,11 @@ body[shrink="false"]>drawer[child-open="true"] {
 }
 
 
-body[shrink="false"] .hide-on-wide {
+body[m-layout="wide"] .hide-on-wide {
     display: none;
 }
 
-body:not([shrink="false"]) .hide-on-shrink {
+body[m-layout="narrow"] .hide-on-narrow {
     display: none;
 }
 
@@ -253,9 +253,11 @@ toolbar {
     top: 0px;
     right:0px;
     z-index: 900;
+    backdrop-filter: blur(4px);
+    border-bottom: 1px solid var(--me-color-surface);
 }
 
-body[shrink="false"] :is(toolbar,paper){
+body[m-layout="wide"] toolbar{
     width: calc(100vw - var(--drawer-width-default));
     margin-left: var(--drawer-width-default);
 }
@@ -269,13 +271,17 @@ paper{
     padding: 16px;
 }
 
-body:not([shrink="false"]) toolbar{
+body[m-layout="narrow"] toolbar{
     width: calc(100vw - 16px);
 }
 
-body[shrink="false"] paper{
-    width: calc(100vw - var(--drawer-width-default) - 32px);
-    margin-left: var(--drawer-width-default);
+body[m-layout="wide"] paper{
+    width: calc(100vw - var(--drawer-width-default) - 48px);
+    padding-left: calc(var(--drawer-width-default) + 16px);
+}
+
+body[m-layout="narrow"] paper{
+    width: unset;
 }
 
 body[no-toolbar="true"] paper{

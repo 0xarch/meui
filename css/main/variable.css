@@ -28,14 +28,18 @@ body{
 
 body.light{
     color: #1f1f1f;
-    --me-color-secondary-container: #c2e7ff;
     --me-color-surface-0: #fff;
     --me-color-surface: #f3f6fc;
     --me-color-onsurface-v-2: linear-gradient(0deg, rgba(68, 71, 70, .08), rgba(68, 71, 70, .08));
     --me-color-surface-text: #1f1f1f;
     --me-color-surface-outline: #747775;
     --me-color-surfce-text-0: #fff;
-    --me-colorSurfaceBgPrimary: hsl(calc(var(--basisColor-H) - 10),calc(var(--basisColor-S) + 20%),calc(var(--basisColor-L) + 45%));
+    --me-basicColorDefinitionPrimary-H: calc(var(--basisColor-H) - 10);
+    --me-basisColorDefinitionCommon-S: calc(var(--basisColor-S) - 25%);
+    --me-basisColorDefinitionCommon-L: calc(var(--basisColor-L) + 55%);
+    --me-colorSurfaceBgPrimary: hsl(var(--me-basicColorDefinitionPrimary-H),calc(var(--basisColor-S) + 20%),calc(var(--basisColor-L) + 45%));
+    --me-colorSurfaceBgLight: hsl(var(--me-basicColorDefinitionPrimary-H),calc(var(--basisColor-S) - 10%),calc(var(--basisColor-L) + 53%));
+    --me-colorSurfaceBgCommon: hsl(var(--me-basicColorDefinitionPrimary-H),var(--me-basisColorDefinitionCommon-S),var(--me-basisColorDefinitionCommon-L));
 }
 
 body.dark{
@@ -47,5 +51,10 @@ body.dark{
     --me-color-surface-text: #e3e3e3;
     --me-color-surface-outline: #8e918f;
     --me-color-surfce-text-0: #1f1f1f;
-    --me-colorSurfaceBgPrimary: hsl(calc(var(--basisColor-H) - 13),calc(var(--basisColor-S) - 10%),calc(var(--basisColor-L) - 18%));
+    --me-basicColorDefinitionPrimary-H: calc(var(--basisColor-H) - 13);
+    --me-basisColorDefinitionCommon-S: calc(var(--basisColor-S) - 55%);
+    --me-basisColorDefinitionCommon-L: calc(var(--basisColor-L) - 29%);
+    --me-colorSurfaceBgPrimary: hsl(var(--me-basicColorDefinitionPrimary-H),calc(var(--basisColor-S) - 10%),calc(var(--basisColor-L) - 18%));
+    --me-colorSurfaceBgLight: hsl(var(--me-basicColorDefinitionPrimary-H),calc(var(--basisColor-S) - 10%),calc(var(--basisColor-L) + 53%));
+    --me-colorSurfaceBgCommon: hsl(var(--me-basicColorDefinitionPrimary-H),var(--me-basisColorDefinitionCommon-S),var(--me-basisColorDefinitionCommon-L));
 }

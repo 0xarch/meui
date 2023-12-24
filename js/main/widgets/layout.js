@@ -1,5 +1,5 @@
 function resolveGrid(){
-    document.querySelectorAll('layout[grid]').forEach((i)=>{
+    document.querySelectorAll('layout[\\@grid]').forEach((i)=>{
         if(i.getAttribute('col')){
             let col = i.getAttribute('col').split(" ");
             col[1]?void 0: (col.push('auto'));

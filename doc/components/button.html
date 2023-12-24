@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main/import.css">
+    <script type="module" src="js/main/main.js"></script>
+    <title>Button | MEUI Doc</title>
+</head>
+<body>
+    
+</body>
+<script type="module">
+MEUI.window.layoutManager.detectShrink();
+MEUI.window.darkManager.setMode();
+MEUI.window.darkManager.bindOn();
+
+var drawer = document.querySelector("drawer");
+MEUI.components.drawer.create(drawer,document.getElementById('drawer-open'));
+MEUI.widgets.layout.resolveGrid();
+
+window.onresize = function(){
+    MEUI.browse.windowSettings.debounced.detectShrink();
+}
+</script>
+</html>
