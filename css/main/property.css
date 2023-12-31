@@ -10,3 +10,28 @@
 .mBgFillBasis:hover{
     background-color: var(--basisColorLighter);
 }
+
+.mPosRelative{
+    position: relative;
+}
+
+.mFlexCol{
+    display: flex;
+    flex-direction: column;
+}
+
+body[m-layout='wide'] .mNoinWide{
+    display: none;
+}
+
+body[m-layout='narrow'] .mNoinNarrow{
+    display: none;
+}
+
+body[m-layout='wide'] .mHideinWide{
+    visibility: hidden;
+}
+
+body[m-layout='narrow'] .mHideinNarrow{
+    visibility: hidden;
+}

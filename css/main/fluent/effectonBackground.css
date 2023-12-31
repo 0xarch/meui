@@ -1,0 +1,26 @@
+*:is(*,[\@fluent]):not(._override_style)[\@bg\.acrylic]{
+    backdrop-filter: blur(30px) brightness(110%) saturate(80%);
+    background-color: var(--me-fluentBgOverrideAcrylic) !important;
+    color: var(--me-fluentTextOverrideAcrylic) !important;
+}
+
+*:is(*,[\@fluent]):not(._override_style)[\@bg\.acrylic]:hover{
+    backdrop-filter: blur(30px) brightness(120%) saturate(80%);
+}
+
+*[\@bg\.fit]{
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+*[\@bg\.fit='contain']{
+    background-size: contain;
+}
+
+*[\@bg\.loc='L']{
+    background-position: left;
+}
+
+*[\@bg\.loc='R']{
+    background-position: right;
+}

@@ -1,0 +1,14 @@
+:root{
+    --drawerSidebarWidth: 128px;
+    --drawerSidebarItemWidth: 112px;
+    --drawerMenuWith: 320px;
+    --toolbarHeight: 64px;
+}
+
+body[m-layout='wide']{
+    --mainContentWidth: calc(100% - var(--drawerSidebarWidth));
+}
+
+body,body[m-layout='narrow']{
+    --mainContentWidth: 100%;
+}

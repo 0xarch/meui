@@ -1,0 +1,217 @@
+drawer[\@fluent]{
+    --itemHeight: 48px;
+    --sidebarWidth: 128px;
+    --sidebarItemWidth: 112px;
+    --fullWidth: 320px;
+}
+
+.drawer-shadow {
+    background: #00000020;
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity .2s ease-in-out;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.drawer-shadow.shown {
+    opacity: 1;
+    pointer-events: auto;
+    backdrop-filter: blur(3px);
+}
+
+drawer[\@fluent][open="true"] {
+    left: 0% !important;
+}
+
+drawer[\@fluent][open="false"] {
+    left: -100% !important;
+}
+
+drawer[\@fluent]{
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: border-radius .2s ease-in-out,
+                left .2s ease-in-out;
+}
+
+drawer[\@fluent] {
+    line-height: 24px;
+    background-color: var(--me-fluentBgCommon);
+    box-shadow: var(--me-theme-elevation-1);
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    border-right: 1px solid var(--me-fluentBorderCommon);
+    z-index: 1100;
+    height: 100vh;
+    position: fixed;
+}
+
+drawer[\@fluent] ._in_drawerComponent._prop_item{
+    display: flex;
+    align-items: center;
+    height: var(--itemHeight);
+    width: calc(var(--drawer-width) - 16px);
+    margin: 8px;
+    padding: 0px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--me-color-surface-text);
+    border: none;
+    font-size: var(--font-size);
+    cursor: pointer;
+}
+
+drawer[\@fluent] ._in_drawerComponent._prop_item>icon {
+    display: flex;
+    height: 32px;
+    width: 32px;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+}
+
+drawer[\@fluent] ._in_drawerComponent._prop_subMenus {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    opacity: 0;
+    transition: left .1s ease-in-out,
+                opacity .2s ease-in-out;
+}
+
+drawer[\@fluent][child-open='true'] ._in_drawerComponent._prop_subMenus{
+    opacity: 1;
+}
+
+drawer[\@fluent] ._in_drawerComponent._prop_subDropper{
+    position: relative;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 0px;
+    transition: height .3s ease-in-out;
+}
+
+drawer[\@fluent] ._in_drawerComponent._prop_subDropper::before{
+    content: 'arrow_drop_down';
+    font-family: 'Google Symbols';
+    position: absolute;
+    left: 20px;
+    height: var(--itemHeight);
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .3s ease-in-out;
+}
+
+drawer[\@fluent] ._in_drawerComponent._prop_subDropper:hover::before{
+    transform: rotate(180deg);
+}
+
+drawer[\@fluent] ._in_drawerComponent._prop_subDropper:hover{
+    height: var(--sHeight);
+}
+
+drawer[\@fluent] ._in_drawerComponent._prop_subDropper>span{
+    display: flex;
+    min-height: var(--itemHeight);
+    width: var(--drawer-width);
+    padding-left: 140px;
+    align-items: center;
+}
+
+drawer[\@fluent] ._in_drawerComponent._prop_subDropped>._in_drawerComponent._prop_item{
+    position: relative;
+}
+
+drawer>section {
+    flex: 1;
+    width: 100%;
+    left: 0px;
+    overflow: visible;
+    position: relative;
+    transition: left .2s ease-in-out;
+}
+
+body[m-layout='narrow'] drawer[\@fluent][child-open="true"]>section {
+    left: calc(-100%);
+}
+
+drawer[\@fluent]>* {
+    display: block;
+    margin: 8px 0 auto;
+    padding-bottom: 24px;
+}
+
+body[m-layout='wide'] drawer[\@fluent] .darkSwitcher span{
+    white-space: nowrap;
+}
+
+body[m-layout='wide'] drawer[\@fluent]:not([child-open='true']) .darkSwitcher span{
+    display: none;
+}
+
+body[m-layout='narrow'] drawer[\@fluent] ._in_drawerComponent._prop_mostBackward {
+    padding-bottom: 0px;
+    width: 100%;
+}
+
+body[m-layout='narrow'] drawer[\@fluent] ._in_drawerComponent._prop_mostBackward>button{
+    background-color: transparent;
+    box-shadow: none;
+    color: var(--me-textCommon);
+}
+
+body[m-layout='wide'] drawer[\@fluent] ._in_drawerComponent._prop_mostBackward {
+    display: none;
+}
+
+body[m-layout="narrow"] drawer[\@fluent]{
+    width: var(--fullWidth);
+}
+
+body[m-layout="wide"] drawer[\@fluent]{
+    width: var(--sidebarWidth);
+    top: var(--toolbarHeight);
+    height: calc(100vh - var(--toolbarHeight));
+    left: 0 !important;
+    transition: width .3s ease-in-out;
+}
+
+body[m-layout="wide"] drawer[\@fluent][child-open="true"]{
+    width: calc(var(--fullWidth) + var(--sidebarWidth));
+}
+
+body[m-layout="wide"] drawer[\@fluent]>section>._in_drawerComponent._prop_item{
+    width: var(--sidebarItemWidth);
+}
+
+body[m-layout="wide"] drawer[\@fluent] ._in_drawerComponent._prop_subMenus{
+    left: var(--sidebarWidth);
+}
+
+body[m-layout='wide'] drawer[\@fluent] ._in_drawerComponent._prop_subMenus ._in_drawerComponent._prop_item:not(._prop_subDropper):hover,
+drawer[\@fluent] ._in_drawerComponent._prop_item:hover{
+    background-color: var(--me-fluentBgSelected);
+}
+
+drawer[\@fluent] ._in_drawerComponent._prop_item._prop_highlight::after{
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: calc(var(--itemHeight) - 28px);
+    margin-left: 4px;
+    border-radius: 4px;
+    background-color: var(--basisColorLighter);
+}

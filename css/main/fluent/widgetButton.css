@@ -1,0 +1,50 @@
+button{
+    border:none;
+    background: none;
+    color: var(--me-color-surface-text);
+}
+
+:is(button,a[\@as='button']):not(._override_style):is(*,[\@fluent]){
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    height: 48px;
+    padding: 8px;
+    margin: 0 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    user-select: none;
+    border: none;
+    text-decoration: none;
+    background-color: var(--basisColor);
+    color: var(--basisTextColor);
+    box-shadow: var(--me-theme-elevation-1);
+    white-space: nowrap;
+}
+
+:is(button,a[\@as='button']):not(._override_style):is(*,[\@fluent])>*{
+    user-select: none;
+}
+
+:is(button,a[\@as='button']):not(._override_style):is(*,[\@fluent]):hover{
+    background-color: var(--basisColorLighter);
+}
+
+:is(button,a[\@as='button']):not(._override_style):is(*,[\@fluent])
+
+.text-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    height: 48px;
+    padding: 8px;
+    margin: 0 8px;
+    border-radius: 100px;
+    cursor: pointer;
+    user-select: none;
+    border: none;
+    background: transparent;
+    text-decoration: none;
+}

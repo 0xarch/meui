@@ -1,0 +1,195 @@
+.drawer-shadow {
+    background: #00000020;
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity .2s ease-in-out;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.drawer-shadow.shown {
+    opacity: 1;
+    pointer-events: auto;
+    backdrop-filter: blur(3px);
+}
+
+drawer[\@material][open="true"] {
+    left: 0% !important;
+}
+
+drawer[\@material][open="false"] {
+    left: -100% !important;
+}
+
+drawer[\@material]{
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: border-radius .2s ease-in-out,
+                left .2s ease-in-out;
+}
+
+drawer[\@material] {
+    line-height: 24px;
+    background-color: var(--me-fluentBgCommon);
+    box-shadow: var(--me-theme-elevation-1);
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    border-right: 1px solid var(--me-fluentBorderCommon);
+    z-index: 1100;
+    height: 100vh;
+    position: fixed;
+}
+
+drawer[\@material] ._in_drawerComponent._prop_item{
+    display: flex;
+    align-items: center;
+    height: 64px;
+    width: calc(var(--drawer-width) - 16px);
+    margin: 8px;
+    padding: 0px;
+    border-radius: 100px;
+    text-decoration: none;
+    color: var(--me-color-surface-text);
+    border: none;
+    font-size: var(--font-size);
+    cursor: pointer;
+}
+
+drawer[\@material] ._in_drawerComponent._prop_item>icon {
+    display: flex;
+    height: 48px;
+    width: 48px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    padding: 8px;
+}
+
+drawer[\@material] ._in_drawerComponent._prop_subMenus {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    opacity: 0;
+    transition: left .1s ease-in-out,
+                opacity .2s ease-in-out;
+}
+
+drawer[\@material][child-open='true'] ._in_drawerComponent._prop_subMenus{
+    opacity: 1;
+}
+
+drawer[\@material] ._in_drawerComponent._prop_subDropper{
+    position: relative;
+    height: 64px;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 0px;
+    transition: height .3s ease-in-out;
+}
+
+drawer[\@material] ._in_drawerComponent._prop_subDropper::before{
+    content: 'arrow_drop_down';
+    font-family: 'Google Symbols';
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: 32px;
+    transition: transform .3s ease-in-out;
+}
+
+drawer[\@material] ._in_drawerComponent._prop_subDropper:hover::before{
+    transform: rotate(180deg);
+}
+
+drawer[\@material] ._in_drawerComponent._prop_subDropper:hover{
+    height: var(--sHeight);
+}
+
+drawer[\@material] ._in_drawerComponent._prop_subDropper>span{
+    display: flex;
+    min-height: 64px;
+    width: var(--drawer-width);
+    padding-left: 140px;
+    align-items: center;
+}
+
+drawer[\@material] ._in_drawerComponent._prop_subDropped>._in_drawerComponent._prop_item{
+    position: relative;
+}
+
+drawer>section {
+    flex: 1;
+    width: 100%;
+    left: 0px;
+    overflow: visible;
+    position: relative;
+    transition: left .2s ease-in-out;
+}
+
+body[m-layout='narrow'] drawer[\@material][child-open="true"]>section {
+    left: calc(-100%);
+}
+
+drawer[\@material]>* {
+    display: block;
+    margin: 8px 0 auto;
+    padding-bottom: 24px;
+}
+
+body[m-layout='wide'] drawer[\@material] .darkSwitcher span{
+    white-space: nowrap;
+}
+
+body[m-layout='wide'] drawer[\@material]:not([child-open='true']) .darkSwitcher span{
+    display: none;
+}
+
+body[m-layout='narrow'] drawer[\@material] ._in_drawerComponent._prop_mostBackward{
+    padding-left: 16px;
+    padding-top: 8px;
+    padding-bottom: 0px;
+    width: 100%;
+}
+
+body[m-layout='wide'] drawer[\@material] ._in_drawerComponent._prop_mostBackward {
+    display: none;
+}
+
+body[m-layout="narrow"] drawer[\@material]{
+    width: var(--drawer-width-shrink);
+}
+
+body[m-layout="wide"] drawer[\@material]{
+    width: var(--drawer-width-default);
+    left: 0 !important;
+    transition: width .3s ease-in-out;
+}
+
+body[m-layout="wide"] drawer[\@material][child-open="true"]{
+    width: calc(var(--drawer-width-shrink) + 80px);
+}
+
+body[m-layout="wide"] drawer[\@material]>section>._in_drawerComponent._prop_item{
+    width: 64px;
+    flex-direction: column;
+}
+
+body[m-layout="wide"] drawer[\@material] ._in_drawerComponent._prop_subMenus{
+    left: 80px;
+}
+
+body[m-layout='narrow'] drawer[\@material] ._in_drawerComponent._prop_item:hover,
+body[m-layout='wide'] drawer[\@material] ._in_drawerComponent._prop_subMenus ._in_drawerComponent._prop_item:hover,
+body[m-layout='wide'] drawer[\@material] section>._in_drawerComponent._prop_item:is(:hover,[open-menu='true'])>icon{
+    background-color: var(--me-fluentBgPrimary);
+}

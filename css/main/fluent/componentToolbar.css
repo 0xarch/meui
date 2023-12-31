@@ -1,0 +1,23 @@
+toolbar:is([\@fluent],*) {
+    height: var(--toolbarHeight);
+    display: flex;
+    align-items: center;
+    position: fixed;
+    box-sizing: border-box;
+    top: 0px;
+    right:0px;
+    z-index: 900;
+    backdrop-filter: blur(4px);
+    background-color: var(--me-fluentBgPrimary);
+    box-shadow: var(--me-theme-elevation-1);
+    width: 100%;
+}
+
+toolbar:is([\@fluent],*)>:is(button,*[\@as="button"]):not(._override_style):is([\@fluent],*){
+    box-shadow: none;
+    background-color: var(--me-fluentBgPrimary);
+}
+
+toolbar:is([\@fluent],*)>:is(button,*[\@as="button"]):not(._override_style):is([\@fluent],*):hover{
+    background-color: var(--me-fluentBgLight);
+}

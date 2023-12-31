@@ -2,10 +2,10 @@ layout[\@grid]{
     display: grid;
 }
 
-body[m-device="pc"] layout[\@grid]{
+body[m-layout="wide"] layout[\@grid]{
     grid-template-columns: repeat(var(--mGridCount),var(--mGridType));
 }
 
-body[m-device="mob"] layout[\@grid]{
+body[m-layout="narrow"] layout[\@grid]{
     grid-template-columns: repeat(var(--mGridCountM),var(--mGridTypeM));
 }

@@ -1,0 +1,43 @@
+card:is(*,[\@fluent]){
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px;
+    margin: 16px;
+    border: 1px solid var(--me-fluentBorderCommon);
+    background-color: var(--me-fluentBgCommon);
+}
+
+card:is(*,[\@fluent])[\@prop~='round:none']{
+    border-radius: 0px;
+}
+
+card:is(*,[\@fluent])[\@prop~='round:small']{
+    border-radius: 8px;
+}
+
+card:is(*,[\@fluent])[\@prop~='round:middle']{
+    border-radius: 16px;
+}
+
+card:is(*,[\@fluent])[\@prop~='round:large']{
+    border-radius: 32px;
+}
+
+card:is(*,[\@fluent])[\@prop~='out-gap:none']{
+    padding: 0px;
+}
+
+card:is(*,[\@fluent])[\@prop~='inner-gap:none']{
+    margin: 0px;
+}
+
+card:is(*,[\@fluent]) *[\@card='buttonGroup']{
+    display: flex;
+    width: fit-content;
+}
+
+card:is(*,[\@fluent]) *[\@card='buttonGroup']>*{
+    flex: .1;
+}

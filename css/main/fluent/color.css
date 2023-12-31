@@ -1,0 +1,46 @@
+body{
+    --basisColor-H: 216;
+    --basisColor-S: 90%;
+    --basisColor-L: 43%;
+    --basisColor: hsl(var(--basisColor-H),var(--basisColor-S),var(--basisColor-L));
+    --basisColorLighter: hsl(var(--basisColor-H),var(--basisColor-S),calc(var(--basisColor-L) + 12%));
+    --basisColorDarker: hsl(var(--basisColor-H),var(--basisColor-S),calc(var(--basisColor-L) - 12%));
+    --basisTextColor: #fff;
+    --me-theme-elevation-1: 0px 1px 2px 0px rgb(0 0 0 / 30%), 0px 1px 3px 1px rgb(0 0 0 / 15%);
+    --me-theme-elevation-2: 0px 1px 2px 0px rgb(0 0 0 / 30%), 0px 2px 6px 2px rgb(0 0 0 / 15%);
+    --me-theme-elevation-3: 0px 1px 3px 0px rgb(0 0 0 / 30%), 0px 4px 8px 3px rgb(0 0 0 / 15%)
+}
+
+body.light{
+    color: #1f1f1f;
+    --me-textCommon: #1f1f1f;
+    --me-basicColorDefinitionPrimary-H: calc(var(--basisColor-H) + 1);
+    --me-basisColorDefinitionCommon-S: calc(var(--basisColor-S) - 5%);
+    --me-basisColorDefinitionCommon-L: calc(var(--basisColor-L) + 30%);
+    --me-fluentBgPrimary: hsl(var(--me-basicColorDefinitionPrimary-H),calc(var(--basisColor-S) + 20%),calc(var(--basisColor-L) + 15%));
+    --me-fluentBgLight: hsl(var(--me-basicColorDefinitionPrimary-H),calc(var(--basisColor-S) + 10%),calc(var(--basisColor-L) + 18%));
+    --me-fluentBgLighter: hsl(var(--me-basicColorDefinitionPrimary-H),calc(var(--basisColor-S) + 10%),calc(var(--basisColor-L) + 38%));
+    /*--me-fluentBgCommon: hsl(var(--me-basicColorDefinitionPrimary-H),var(--me-basisColorDefinitionCommon-S),var(--me-basisColorDefinitionCommon-L));*/
+    --me-fluentBgCommon: rgb(243,245,245);
+    --me-fluentBgSelected: hsl(calc(var(--basisColor-H) - 1),calc(var(--basisColor-S) - 66%),calc(var(--me-basisColorDefinitionCommon-L) + 21%));
+    --me-fluentBorderCommon: rgba(180,180,190,0.2);
+    --me-fluentBgOverrideAcrylic: #eee5;
+    --me-fluentTextOverrideAcrylic: var(--me-textCommon);
+}
+
+body.dark{
+    color: #fff;
+    --me-textCommon: #eee;
+    --me-basicColorDefinitionPrimary-H: calc(var(--basisColor-H) - 1);
+    --me-basisColorDefinitionCommon-S: calc(var(--basisColor-S) - 55%);
+    --me-basisColorDefinitionCommon-L: calc(var(--basisColor-L) - 29%);
+    --me-fluentBgPrimary: hsl(var(--me-basicColorDefinitionPrimary-H),calc(var(--basisColor-S) - 10%),calc(var(--basisColor-L) - 18%));
+    --me-fluentBgLight: hsl(var(--me-basicColorDefinitionPrimary-H),calc(var(--basisColor-S) - 10%),calc(var(--basisColor-L) - 13%));
+    --me-fluentBgLighter: hsl(var(--me-basicColorDefinitionPrimary-H),calc(var(--basisColor-S) - 10%),calc(var(--basisColor-L) - 13%));
+    /*--me-fluentBgCommon: hsl(var(--me-basicColorDefinitionPrimary-H),var(--me-basisColorDefinitionCommon-S),var(--me-basisColorDefinitionCommon-L));*/
+    --me-fluentBgCommon: rgb(35,35,37);
+    --me-fluentBgSelected: hsl(calc(var(--basisColor-H) - 1),calc(var(--basisColor-S) - 72%),calc(var(--me-basisColorDefinitionCommon-L) + 5%));
+    --me-fluentBorderCommon: rgba(180,180,190,0.2);
+    --me-fluentBgOverrideAcrylic: #3335;
+    --me-fluentTextOverrideAcrylic: var(--me-textCommon);
+}

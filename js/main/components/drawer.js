@@ -51,11 +51,11 @@ async function resolveChildMenu(drawer){
     }
     const section = drawer.querySelector("section");
     for(let child of section.children){
-        if(child.tagName == 'UL'){
+        if(child.classList.contains('_prop_subMenuer')){
             child.onclick = function(){
                 openChildMenu(child);
             }
-            let child_close = child.querySelector(".child-close");
+            let child_close = child.querySelector("._prop_closing");
             if(child_close !== undefined){
                 child_close.onclick = function(e){
                     e.stopPropagation();
@@ -64,6 +64,53 @@ async function resolveChildMenu(drawer){
             }
         }else continue;
     }
+}
+
+function createLink(conf){
+    var link = Button.button.create(conf.icon,conf.text,conf.href,['_in_drawerComponent','_prop_item']);
+    if(location.pathname == conf.href) link.classList.add('_prop_highlight');
+    return link;
+}
+
+function createSubdrop(text,children,css_class,holder_class){
+    let menu = document.createElement('div');
+    let menu_child_holder = document.createElement('div');
+    menu.innerHTML+=`<span>${text}</span>`;
+    if(css_class instanceof Array) menu.classList.add(...css_class);
+    else menu.classList.add(css_class);
+    if(holder_class instanceof Array) menu_child_holder.classList.add(...holder_class);
+    else menu_child_holder.classList.add(holder_class);
+    for(let child of children){
+        menu_child_holder.appendChild(child);
+    }
+    menu.appendChild(menu_child_holder);
+    menu.style.setProperty('--sHeight','calc(var(--itemHeight) + '+(64*children.length)+'px)');
+    return menu;
+}
+
+function generateChildMenu(conf){
+    var elem = document.createElement('div');
+    elem.innerHTML += `<icon>${conf.icon}</icon><span>${conf.text}</span>`;
+    var childmenu = document.createElement('div');
+    var childclose = Button.button.create('arrow_back','返回',void 0,['_prop_closing','_in_drawerComponent','_prop_item','_override_style']);
+    elem.classList.add('_in_drawerComponent','_prop_item','_prop_subMenuer');
+    childmenu.classList.add('_in_drawerComponent','_prop_subMenus');
+    childmenu.appendChild(childclose);
+    for(let child_conf of conf.child){
+        if(child_conf.type == 'menu'){
+            let children = [];
+            for(let sub_child of child_conf.child){
+                var sub_elem = Button.button.create(sub_child.icon,sub_child.text,sub_child.href,['_in_drawerComponent','_prop_item','_override_style']);
+                children.push(sub_elem);
+            }
+            let menu = createSubdrop(child_conf.text,children,['_in_drawerComponent','_prop_item','_prop_subDropper'],['_in_drawerComponent','_prop_subDropped']);
+            childmenu.appendChild(menu);
+        } else {
+            childmenu.appendChild(createLink(child_conf));
+        }
+    }
+    elem.appendChild(childmenu);
+    return elem;
 }
 
 /**
@@ -83,56 +130,16 @@ async function create(drawer_with_json,open_button){
         var hide_div = document.createElement('div');
         var hide_button = Button.iconButton.create('menu_open');
         bindDrawerClose(hide_button,drawer_with_json);
-        hide_div.classList.add('me-div-goback');
+        hide_div.classList.add('_in_drawerComponent','_prop_mostBackward');
         hide_div.appendChild(hide_button);
         drawer_with_json.appendChild(hide_div);
     }
     var section = document.createElement('section');
     for(let item of config.section){
         if(item.type == 'menu'){
-            var elem = document.createElement('ul');
-            var icon = document.createElement('icon');
-            var text = document.createElement('span');
-            var childmenu = document.createElement('child-menu');
-            var childclose = Button.button.create('arrow_back','返回',void 0,['drawer-item','child-close','mId0-ci']);
-            icon.textContent = item.icon;
-            text.textContent = item.text;
-            elem.classList.add('drawer-item','mId0-c');
-            childmenu.appendChild(childclose);
-            for(let child of item.child){
-                let elem = void 0;
-                let icon = document.createElement('icon');
-                let text = document.createElement('span');
-                icon.textContent = child.icon;
-                text.textContent = child.text;
-                if(child.type == 'menu'){
-                    elem = document.createElement('ul');
-                    elem.classList.add('has-sub-drop');
-                    let sub_childmenu = document.createElement('child-drop');
-                    for(let sub_child of child.child){
-                        var sub_elem = Button.button.create(sub_child.icon,sub_child.text,sub_child.href,'drawer-item');
-                        sub_childmenu.appendChild(sub_elem);
-                    }
-                    elem.appendChild(text);
-                    elem.appendChild(sub_childmenu);
-                    elem.style.setProperty('--sHeight','calc(64px + '+child.child.length+'*80px)');
-                }else{
-                    elem = document.createElement('a');
-                    elem.href = child.href;
-                    elem.appendChild(icon);
-                    elem.appendChild(text);
-                }
-                elem.classList.add('drawer-item');
-                childmenu.appendChild(elem);
-            }
-            elem.appendChild(icon);
-            elem.appendChild(text);
-            elem.appendChild(childmenu);
-            section.appendChild(elem);
+            section.appendChild(generateChildMenu(item));
         }else{
-            var elem = Button.button.create(item.icon,item.text,item.href,['drawer-item','mId0-c']);
-            if(location.pathname == item.href) elem.classList.add('mId0-hl');
-            section.appendChild(elem);
+            section.appendChild(createLink(item));
         }
     }
     drawer_with_json.appendChild(section);

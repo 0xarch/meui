@@ -1,0 +1,19 @@
+paper{
+    display: block;
+    min-height: calc(100vh - var(--toolbarHeight));
+    position: relative;
+    right: 0px;
+    top: var(--toolbarHeight);
+    padding: 16px;
+    width: var(--mainContentWidth);
+    box-sizing: border-box;
+}
+
+body[m-layout="wide"] paper{
+    margin-left: var(--drawerSidebarWidth);
+}
+
+body[no-toolbar="true"] paper{
+    top: 16px;
+    min-height: 100vh;
+}

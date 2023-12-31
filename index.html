@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main/import.css">
+    <link rel="stylesheet" href="css/main/fluent.css">
     <script type="module" src="js/main/main.js"></script>
     <title>MEUI Index</title>
 </head>
 
 <body shrink="false">
-    <drawer @Mr="@c:drawer">
+    <drawer @Mr="@c:drawer" @fluent>
         {
             "open":"false",
             "hideButton":"true",
@@ -57,38 +58,47 @@
     </drawer>
     <Toolbar @Mr="@c:toolbar"></Toolbar>
     <Paper>
-        <card>
+        <card @fluent>
             <h1>MEUI</h1>
-            <p>仿 Google Material Design 3 设计的静态网页工具集.</p>
-            <a @card="bigButton" href="/">
+            <p>受 Google Material Design 3 与 Microsoft Fluent Design 启发而设计的静态UI.</p>
+            <a @as="button" @fluent href="/">
                 <h3 style="margin: 32px">了解 MEUI ...</h3>
             </a>
         </card>
         <layout @grid col="2 50%" s-col="1">
-            <card style="background:var(--me-colorSurfaceBgCommon)">
-                <h1>Google Symbols</h1>
-                <p>在输入框中输入，按回车预览.</p>
-                <input type="text" onchange="document.getElementById('d-google-symbol').innerHTML = this.value">
-                <p id="d-google-symbol" class="google-symbols"></p>
-            </card>
             <card>
+                <h1>Symbol</h1>
+                <p>在输入框中输入，按回车预览.</p>
+                <input type="text" onchange="document.getElementById('d-google-symbol').innerHTML = this.value" placeholder="Google Symbols">
+                <p id="d-google-symbol" class="google-symbols">google</p>
+                <input type="text" onchange="document.getElementById('d-segoe-icon').innerHTML = this.value" placeholder="Segoe Icon">
+                <p id="d-segoe-icon" class="_icon_segoe">&#8674</p>
+            </card>
+            <card @fluent>
                 <h1>ME.JS <icon>javascript</icon></h1>
                 <p>使用 MEUI 提供的一系列静态开发套件.</p>
-                <a @card="bigButton" href="/">
+                <a @as="button" href="/">
                     <h3 style="margin: 16px;">现在开始 ...</h3>
                 </a>
             </card>
-            <card>
+            <card @fluent style="background-image: url('https://lh3.googleusercontent.com/2OrUzHCRSI-V46Z1qJBh90usG6OkKwCbXN80FbrjkWoQz4VfoJjNAoQHLHPQRZWH7dI_m5I1gi48h6xMJ5pK6kkdXmUnXPe4VqwvEdo4QeWRjLV9Oew=w2400-rj')" @bg.fit>
                 <h1><icon>material_design</icon> Material 3</h1>
                 <p>Material 3 is the latest version of Google’s open-source design system. Design and build beautiful, usable products with Material 3.</p>
                 <div @card="buttonGroup">
-                    <a @card="bigButton" href="https://m3.material.io">
+                    <a @as="button" href="https://m3.material.io">
                         <h3 style="margin: 16px;">Material 3</h3>
                     </a>
-                    <a @card="bigButton" href="https://material.io/blog">
+                    <a @as="button" href="https://material.io/blog">
                         <h3 style="margin: 16px;">Material Blog</h3>
                     </a>
                 </div>
+            </card>
+            <card @fluent style="background-image: url(https://fluent2websitecdn.azureedge.net/cdn/img_hero_fluent.jmxAQlDf.webp);" @bg.fit="contain" @bg.loc="R">
+                <h1>Fluent Design 2</h1>
+                <p>Let all things flow.</p>
+                <a @as="button" @bg.acrylic href="https://fluent2.microsoft.design">
+                    <h3 style="margin: 16px;">Fluent 2</h3>
+                </a>
             </card>
         </layout>
     </Paper>
